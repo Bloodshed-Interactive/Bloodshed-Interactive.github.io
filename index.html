@@ -1,195 +1,199 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BloodShed Interactive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <style>
+      :root {
+        /* Default Theme (BLACK) */
+        --bg-primary: #030303;
+        --bg-secondary: #0a0a0a;
+        --text-primary: #ededed;
+        --text-secondary: #666666;
+        --accent: #d20a0a;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --inverse-text: #000000;
+        --color-red: #d20a0a;
+        /* Static reference */
+      }
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BLOODSHED.</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
-    rel="stylesheet">
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <style>
-    :root {
-      /* Default Theme (BLACK) */
-      --bg-primary: #030303;
-      --bg-secondary: #0a0a0a;
-      --text-primary: #EDEDED;
-      --text-secondary: #666666;
-      --accent: #D20A0A;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --inverse-text: #000000;
-      --color-red: #D20A0A;
-      /* Static reference */
-    }
+      /* White Theme */
+      body.theme-white {
+        --bg-primary: #f0f0f0;
+        --bg-secondary: #e5e5e5;
+        --text-primary: #111111;
+        --text-secondary: #666666;
+        --accent: #d20a0a;
+        --border-color: rgba(0, 0, 0, 0.1);
+        --inverse-text: #ffffff;
+      }
 
-    /* White Theme */
-    body.theme-white {
-      --bg-primary: #F0F0F0;
-      --bg-secondary: #E5E5E5;
-      --text-primary: #111111;
-      --text-secondary: #666666;
-      --accent: #D20A0A;
-      --border-color: rgba(0, 0, 0, 0.1);
-      --inverse-text: #FFFFFF;
-    }
+      /* Red Theme */
+      body.theme-red {
+        --bg-primary: #990000;
+        /* Slightly darker rich red for better white text contrast */
+        --bg-secondary: #770000;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --accent: #ffffff;
+        --border-color: rgba(255, 255, 255, 0.2);
+        --inverse-text: #990000;
+      }
 
-    /* Red Theme */
-    body.theme-red {
-      --bg-primary: #990000;
-      /* Slightly darker rich red for better white text contrast */
-      --bg-secondary: #770000;
-      --text-primary: #FFFFFF;
-      --text-secondary: rgba(255, 255, 255, 0.7);
-      --accent: #FFFFFF;
-      --border-color: rgba(255, 255, 255, 0.2);
-      --inverse-text: #990000;
-    }
+      body {
+        font-family: "Inter", sans-serif,"Bebas Neue";
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        margin: 0;
+        overscroll-behavior: none;
+        transition:
+          background-color 0.5s ease,
+          color 0.5s ease;
+      }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      margin: 0;
-      overscroll-behavior: none;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
+      h1,
+      h2,
+      h3,
+      h4,
+      .font-display {
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+      }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    .font-display {
-      font-family: 'Oswald', sans-serif;
-      text-transform: uppercase;
-    }
+      ::selection {
+        background: var(--accent);
+        color: var(--inverse-text);
+      }
 
-    ::selection {
-      background: var(--accent);
-      color: var(--inverse-text);
-    }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
 
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-primary);
+      }
 
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent);
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent);
-    }
+      .text-accent {
+        color: var(--accent);
+      }
 
-    .text-accent {
-      color: var(--accent);
-    }
+      .bg-accent {
+        background-color: var(--accent);
+      }
 
-    .bg-accent {
-      background-color: var(--accent);
-    }
+      .border-accent {
+        border-color: var(--accent);
+      }
 
-    .border-accent {
-      border-color: var(--accent);
-    }
+      /* Utilities */
+      .outline-text {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        color: transparent;
+      }
 
-    /* Utilities */
-    .outline-text {
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-      color: transparent;
-    }
+      body.theme-white .outline-text {
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+      }
 
-    body.theme-white .outline-text {
-      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
-    }
+      body.theme-red .outline-text {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+      }
 
-    body.theme-red .outline-text {
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-    }
+      /* Thicker stroke for EPIC DESTINIES */
+      .outline-text-thick {
+        -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.3);
+        color: transparent;
+      }
 
-    /* Thicker stroke for EPIC DESTINIES */
-    .outline-text-thick {
-      -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.3);
-      color: transparent;
-    }
+      body.theme-white .outline-text-thick {
+        -webkit-text-stroke: 2.5px rgba(0, 0, 0, 0.3);
+      }
 
-    body.theme-white .outline-text-thick {
-      -webkit-text-stroke: 2.5px rgba(0, 0, 0, 0.3);
-    }
+      body.theme-red .outline-text-thick {
+        -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.4);
+      }
 
-    body.theme-red .outline-text-thick {
-      -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.4);
-    }
+      /* Contact section text colors */
+      .contact-text {
+        color: white;
+      }
 
-    /* Contact section text colors */
-    .contact-text {
-      color: white;
-    }
+      body.theme-red .contact-text {
+        color: #d20a0a;
+      }
 
-    body.theme-red .contact-text {
-      color: #D20A0A;
-    }
+      .contact-text-muted {
+        color: rgba(255, 255, 255, 0.7);
+      }
 
-    .contact-text-muted {
-      color: rgba(255, 255, 255, 0.7);
-    }
+      body.theme-red .contact-text-muted {
+        color: rgba(210, 10, 10, 0.7);
+      }
 
-    body.theme-red .contact-text-muted {
-      color: rgba(210, 10, 10, 0.7);
-    }
+      /* Animation optimizations to prevent flickering */
+      [data-scroll-animation] {
+        will-change: transform, opacity;
+      }
 
-    /* Animation optimizations to prevent flickering */
-    [data-scroll-animation] {
-      will-change: transform, opacity;
-    }
+      .motion-reduce {
+        animation: none !important;
+        transition: none !important;
+      }
 
-    .motion-reduce {
-      animation: none !important;
-      transition: none !important;
-    }
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
 
-    html.lenis,
-    html.lenis body {
-      height: auto;
-    }
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
 
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
 
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
-    }
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
 
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+          "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "react": "https://aistudiocdn.com/react@^19.2.0"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
 
-    .lenis.lenis-scrolling iframe {
-      pointer-events: none;
-    }
-  </style>
-
-  <link rel="stylesheet" href="/index.css">
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
-  <script type="module" crossorigin src="/assets/index-z4mw0t8e.js"></script>
-</head>
-
-<body>
-  <div id="root"></div>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
