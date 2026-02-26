@@ -201,8 +201,12 @@
 </script>
     <script>
       if (sessionStorage.redirect) {
+        console.log("Redicted:",sessionStorage.redirect)
         history.replaceState(null, null, sessionStorage.redirect);
         sessionStorage.removeItem("redirect");
+      }
+      else{
+        console.log("No direction",null)
       }
   </script>
   </head>
