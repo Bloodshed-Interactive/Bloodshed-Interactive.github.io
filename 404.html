@@ -192,9 +192,13 @@
       }
     </script>
     <script type="module" crossorigin src="/assets/index-11vT5B65.js"></script>
-    <script>
-    sessionStorage.redirect = location.pathname;
-    </script>
+   <script>
+  console.log("Current pathname:", location.pathname);
+
+  sessionStorage.redirect = location.pathname;
+
+  console.log("Stored redirect value:", sessionStorage.redirect);
+</script>
     <script>
       if (sessionStorage.redirect) {
         history.replaceState(null, null, sessionStorage.redirect);
