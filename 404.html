@@ -192,6 +192,15 @@
       }
     </script>
     <script type="module" crossorigin src="/assets/index-11vT5B65.js"></script>
+    <script>
+    sessionStorage.redirect = location.pathname;
+    </script>
+    <script>
+      if (sessionStorage.redirect) {
+        history.replaceState(null, null, sessionStorage.redirect);
+        sessionStorage.removeItem("redirect");
+      }
+  </script>
   </head>
 
   <body>
